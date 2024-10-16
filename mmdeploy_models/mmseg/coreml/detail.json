@@ -1,0 +1,60 @@
+{
+    "version": "1.3.1",
+    "codebase": {
+        "task": "Segmentation",
+        "codebase": "mmseg",
+        "version": "1.2.1",
+        "pth": "../ai_upload/best_mFscore_iter_97200_ddr_pub.pth",
+        "config": "../ai_upload/ddrnet_config_pub.py"
+    },
+    "codebase_config": {
+        "type": "mmseg",
+        "task": "Segmentation",
+        "with_argmax": true
+    },
+    "onnx_config": {
+        "type": "torchscript",
+        "save_file": "end2end.pt",
+        "input_names": [
+            "input"
+        ],
+        "output_names": [
+            "output"
+        ],
+        "input_shape": [
+            240,
+            240
+        ]
+    },
+    "backend_config": {
+        "type": "coreml",
+        "convert_to": "mlprogram",
+        "model_inputs": [
+            {
+                "input_shapes": {
+                    "input": {
+                        "min_shape": [
+                            1,
+                            3,
+                            240,
+                            240
+                        ],
+                        "max_shape": [
+                            1,
+                            3,
+                            240,
+                            240
+                        ],
+                        "default_shape": [
+                            1,
+                            3,
+                            240,
+                            240
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    "calib_config": {}
+}
